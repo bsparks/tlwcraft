@@ -66,6 +66,8 @@ export default class Battlefield {
 
         console.debug('map res: ', this.map.objects.resources);
         this.map.objects.resources.forEach(res => {
+            // in Tiled objects pos is bottom left instead of top left
+
             if (res.type === 'mine') {
                 this.resources.add(new GoldMine(this.game, res.x, res.y));
             }
@@ -98,10 +100,10 @@ export default class Battlefield {
             let tile = collisionLayer.layer.data[node[1]][node[0]];
             let x = tile.worldX + 16; // TODO: base on tile size
             let y = tile.worldY + 16;
-            
+
             return {x, y};
         });
-        
+
         return coordPath;
     }
 }

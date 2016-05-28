@@ -5,6 +5,7 @@ import Xam from 'game/units/xam';
 export default class LoadState extends Phaser.State {
     init() {
         this.game.input.mouse.capture = true;
+        this.game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
     }
 
     preload() {
@@ -22,7 +23,7 @@ export default class LoadState extends Phaser.State {
         if (game.input.mousePointer.isDown) {
             let {x, y} = this.game.input.activePointer;
             let target = this.map.getPathTarget(this.xam.x, this.xam.y, x, y);
-            
+
             this.xam.moveToPath(target);
         }
     }

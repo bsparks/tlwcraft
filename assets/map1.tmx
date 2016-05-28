@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="159">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="223">
  <tileset firstgid="1" name="summer_tiles" tilewidth="32" tileheight="32" spacing="1" tilecount="380" columns="19">
   <image source="summer_tiles.png" width="626" height="659"/>
  </tileset>
@@ -36,7 +36,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="123" type="wood" gid="443" x="384" y="318" width="32" height="32">
+  <object id="123" type="wood" gid="443" x="358" y="341" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -51,12 +51,12 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="126" type="wood" gid="443" x="409" y="367" width="32" height="32">
+  <object id="126" type="wood" gid="443" x="356" y="374" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="127" type="wood" gid="443" x="424" y="377" width="32" height="32">
+  <object id="127" type="wood" gid="443" x="392" y="401" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -131,7 +131,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="142" type="wood" gid="443" x="488" y="383" width="32" height="32">
+  <object id="142" type="wood" gid="443" x="450" y="412" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -203,6 +203,326 @@
   </object>
   <object id="157" name="Start B" type="spawnpoint" gid="556" x="65" y="897" width="64" height="64"/>
   <object id="158" name="Start A" type="spawnpoint" gid="556" x="896" y="448" width="64" height="64"/>
+  <object id="159" type="wood" gid="443" x="253" y="219" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="160" type="wood" gid="443" x="220" y="233" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="161" type="wood" gid="443" x="269" y="256" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="162" type="wood" gid="443" x="246" y="243" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="163" type="wood" gid="443" x="225" y="167" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="164" type="wood" gid="443" x="225" y="200" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="165" type="wood" gid="443" x="300" y="176" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="166" type="wood" gid="443" x="321" y="161" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="167" type="wood" gid="443" x="266" y="164" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="168" type="wood" gid="443" x="272" y="180" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="169" type="wood" gid="443" x="270" y="197" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="170" type="wood" gid="443" x="271" y="220" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="171" type="wood" gid="443" x="299" y="231" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="172" type="wood" gid="443" x="227" y="267" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="173" type="wood" gid="443" x="207" y="166" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="174" type="wood" gid="443" x="324" y="193" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="175" type="wood" gid="443" x="513" y="806.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="176" type="wood" gid="443" x="554" y="803.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="177" type="wood" gid="443" x="495" y="805.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="178" type="wood" gid="443" x="558" y="836.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="179" type="wood" gid="443" x="587" y="870.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="180" type="wood" gid="443" x="513" y="839.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="181" type="wood" gid="443" x="588" y="815.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="182" type="wood" gid="443" x="557" y="895.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="183" type="wood" gid="443" x="612" y="832.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="184" type="wood" gid="443" x="534" y="882.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="185" type="wood" gid="443" x="559" y="859.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="186" type="wood" gid="443" x="560" y="819.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="187" type="wood" gid="443" x="541" y="858.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="188" type="wood" gid="443" x="508" y="872.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="189" type="wood" gid="443" x="641" y="927.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="190" type="wood" gid="443" x="515" y="906.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="191" type="wood" gid="443" x="609" y="800.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="192" type="wood" gid="443" x="894" y="265.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="193" type="wood" gid="443" x="935" y="262.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="194" type="wood" gid="443" x="876" y="264.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="195" type="wood" gid="443" x="939" y="295.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="196" type="wood" gid="443" x="968" y="329.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="197" type="wood" gid="443" x="894" y="298.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="198" type="wood" gid="443" x="969" y="274.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="199" type="wood" gid="443" x="938" y="354.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="200" type="wood" gid="443" x="993" y="291.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="201" type="wood" gid="443" x="915" y="341.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="202" type="wood" gid="443" x="940" y="318.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="203" type="wood" gid="443" x="941" y="278.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="204" type="wood" gid="443" x="922" y="317.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="205" type="wood" gid="443" x="889" y="331.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="206" type="wood" gid="443" x="624" y="882.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="207" type="wood" gid="443" x="896" y="365.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="208" type="wood" gid="443" x="990" y="259.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="209" type="wood" gid="443" x="420.5" y="407.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="210" type="wood" gid="443" x="408.5" y="328.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="211" type="wood" gid="443" x="444.5" y="383.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="212" type="wood" gid="443" x="433.5" y="340.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="213" type="wood" gid="443" x="413.5" y="301.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="214" type="wood" gid="443" x="517.5" y="366.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="215" type="wood" gid="443" x="379.5" y="307.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="216" type="wood" gid="443" x="389.5" y="376.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="217" type="wood" gid="443" x="390.5" y="342.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="218" type="wood" gid="443" x="420.5" y="364.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="219" type="wood" gid="443" x="353.5" y="316.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="220" type="wood" gid="443" x="395.5" y="315.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="221" type="wood" gid="443" x="499.5" y="380.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
+  <object id="222" type="wood" gid="443" x="364.5" y="285.5" width="32" height="32">
+   <properties>
+    <property name="wood" value="10"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="collision" width="32" height="32">
   <data encoding="base64">
