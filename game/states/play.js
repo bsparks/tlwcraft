@@ -1,4 +1,5 @@
 import {Phaser} from 'phaser';
+import Battlefield from 'game/map/battlefield';
 import Xam from 'game/units/xam';
 
 export default class LoadState extends Phaser.State {
@@ -7,15 +8,7 @@ export default class LoadState extends Phaser.State {
     }
 
     create() {
-        this.map = this.game.add.tilemap('map1');
-
-        //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
-        this.map.addTilesetImage('summer_tiles', 'summer_tiles');
-
-        // dunno why tilemap doesn't track actual TileLayer objects?
-        this.map.tileLayers = {};
-
-        this.map.tileLayers.ground = this.groundlayer = this.map.createLayer('ground');
+        this.map = new Battlefield(this.game, 'map1');
 
         let xam = new Xam(this.game, 100,100);
         this.game.world.add(xam);
