@@ -94,12 +94,14 @@ export default class Battlefield {
         let tY = targetTile.y;
 
         let path = finder.findPath(sX, sY, tX, tY, grid);
-        let nextNode = path.length > 1 ? path[1] : path[0];
-        let tile = collisionLayer.layer.data[nextNode[1]][nextNode[0]];
-
-        x = tile.worldX + 16; // TODO base on tile size
-        y = tile.worldY + 16;
-
-        return { x, y };
+        let coordPath = path.map(function(node) {
+            let tile = collisionLayer.layer.data[node[1]][node[0]];
+            let x = tile.worldX + 16; // TODO: base on tile size
+            let y = tile.worldY + 16;
+            
+            return {x, y};
+        });
+        
+        return coordPath;
     }
 }

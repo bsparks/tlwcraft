@@ -32,6 +32,8 @@ export default class Unit extends Phaser.Sprite {
     }
 
     update() {
+        this.followPath();
+        
         let v = this.body.velocity;
         if (v.x === 0 && v.y === 0) {
             this.animations.stop();
@@ -66,6 +68,37 @@ export default class Unit extends Phaser.Sprite {
         }
 
         this.animations.play(anim);
+    }
+    
+    moveToPath(path) {
+        this.currentPath = path;
+        this.currentPathIndex = 0;
+    }
+    
+    stop() {
+        this.body.acceleration.set(0);
+        this.body.velocity.set(0);
+    }
+    
+    followPath() {
+        if (!this.currentPath) {
+            return;
+        }
+        
+        if (this.currentPathIndex >= this.currentPath.length) {
+            this.stop();
+            return;
+        }
+        
+        let {x, y} = this.currentPath[this.currentPathIndex];
+        
+        this.game.physics.arcade.moveToXY(this, x, y, this.moveSpeed);
+        
+        let distance = this.game.math.distance(this.x, this.y, x, y);
+        //console.debug('node: ', this.currentPathIndex, distance);
+        if (distance < 0.5) {
+            this.currentPathIndex++;
+        }
     }
 
     damage(amount) {
