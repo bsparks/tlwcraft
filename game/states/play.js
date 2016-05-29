@@ -25,6 +25,7 @@ export default class PlayState extends Phaser.State {
         this.opponent = new CpuPlayer(this, 'orc', {}, this.map.orcUnits);
 
         this.hud = this.game.add.group();
+        this.hud.fixedToCamera = true;
         let font = {
             font: '12px Arial Black',
             fill: '#fff',
@@ -34,8 +35,8 @@ export default class PlayState extends Phaser.State {
         this.hud.addChild(this.game.add.text(120, 0, 'Wood: ' + this.player.wood, font));
         this.hud.addChild(this.game.add.text(240, 0, 'Food: ' + this.player.food, font));
 
-        this.hud.y = 8;
-        this.hud.x = 300;
+        //this.hud.y = 8;
+        //this.hud.x = 300;
     }
 
     update() {
