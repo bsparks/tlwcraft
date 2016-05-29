@@ -1,8 +1,8 @@
 import {Phaser} from 'phaser';
 import {Grid, AStarFinder} from 'pathfinding';
+import createUnit from 'game/units/unitFactory';
 
 import GoldMine from 'game/map/goldmine';
-import Tree from 'game/map/tree';
 
 function getWalkableData(layer) {
     let gridData = [];
@@ -81,7 +81,9 @@ export default class Battlefield {
             }
 
             if (res.type === 'wood') {
-                this.resources.add(new Tree(this.game, res.x, res.y));
+                let tree = createUnit(this.game, 'tree', res);
+                tree.y -= tree.height;
+                this.resources.add(tree);
             }
         });
     }
