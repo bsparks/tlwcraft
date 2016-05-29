@@ -24,11 +24,6 @@ export default class PlayState extends Phaser.State {
 
         this.opponent = new CpuPlayer(this, 'orc', {}, this.map.orcUnits);
 
-        this.peasant = new Peasant(this.game, 100, 100);
-        this.game.world.add(this.peasant);
-
-        window.peasant = this.peasant;
-
         this.hud = this.game.add.group();
         let font = {
             font: '12px Arial Black',
@@ -46,14 +41,6 @@ export default class PlayState extends Phaser.State {
     update() {
         this.player.update();
         this.opponent.update();
-
-        if (game.input.activePointer.rightButton.isDown) {
-            console.debug('mouse', game.input.activePointer);
-            let {x, y} = this.game.input.activePointer;
-            let target = this.map.getPathTarget(this.peasant.x, this.peasant.y, x, y);
-
-            this.peasant.moveToPath(target);
-        }
     }
 
     render() {

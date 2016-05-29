@@ -39,6 +39,10 @@ export default class Unit extends Phaser.Sprite {
         dirs.forEach((dir, i) => {
             this.sprite.animations.add(`move_${dir}`, [i], 10, true);
         });
+
+        this.selected = false;
+
+        this.inputEnabled = true;
     }
 
     get selected() {

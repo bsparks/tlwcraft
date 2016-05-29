@@ -622,8 +622,8 @@
                  "type":"spawnpoint",
                  "visible":true,
                  "width":64,
-                 "x":896,
-                 "y":448
+                 "x":670,
+                 "y":320
                 }, 
                 {
                  "gid":443,
@@ -1667,8 +1667,68 @@
          "width":32,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":32,
+         "name":"humans",
+         "objects":[
+                {
+                 "gid":559,
+                 "height":32,
+                 "id":223,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"peasant",
+                 "visible":true,
+                 "width":32,
+                 "x":715,
+                 "y":332
+                }, 
+                {
+                 "gid":559,
+                 "height":32,
+                 "id":227,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"peasant",
+                 "visible":true,
+                 "width":32,
+                 "x":655,
+                 "y":336
+                }, 
+                {
+                 "gid":559,
+                 "height":32,
+                 "id":228,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"peasant",
+                 "visible":true,
+                 "width":32,
+                 "x":687,
+                 "y":279
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":32,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":223,
+ "nextobjectid":229,
  "orientation":"orthogonal",
  "properties":
     {
@@ -1761,6 +1821,23 @@
          "tilecount":1,
          "tileheight":64,
          "tilewidth":64
+        }, 
+        {
+         "columns":1,
+         "firstgid":557,
+         "image":"peasant.png",
+         "imageheight":256,
+         "imagewidth":32,
+         "margin":0,
+         "name":"peasant",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,
