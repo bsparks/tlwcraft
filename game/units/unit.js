@@ -1,7 +1,7 @@
 import {Phaser} from 'phaser';
 
 export default class Unit extends Phaser.Sprite {
-    constructor(game, x = 0, y = 0, key) {
+    constructor(game, x = 0, y = 0, spriteKey = 'peasant', selectronKey = 'selection') {
         super(game, x, y); // no key? or need a empty image...
 
         game.physics.arcade.enable(this);
@@ -14,11 +14,11 @@ export default class Unit extends Phaser.Sprite {
         this.forward = new Phaser.Point();
 
         // selectron first, needs to be underneath the sprite
-        this.selectron = this.addChild(game.add.image(0, 0, 'selection'));
+        this.selectron = this.addChild(game.add.image(0, 0, selectronKey));
         this.selectron.anchor.setTo(0.5);
 
         // the actual animations are on top of the selectron
-        this.sprite = this.addChild(game.add.sprite(0, 0, key));
+        this.sprite = this.addChild(game.add.sprite(0, 0, spriteKey));
         this.sprite.anchor.setTo(0.5);
 
         // stats
