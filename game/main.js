@@ -14,8 +14,6 @@ class JamGame extends Phaser.Game {
 
         this.state.start('boot');
     }
-
-
 }
 
 var width = window.innerWidth * window.devicePixelRatio,

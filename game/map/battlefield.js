@@ -53,6 +53,14 @@ export default class Battlefield {
         this.map.tileLayers.ground.resizeWorld();
     }
 
+    get humanUnits() {
+        return this.map.objects.humans;
+    }
+
+    get orcUnits() {
+        return this.map.objects.orcs;
+    }
+
     buildPathGrid() {
         let collisionLayer = this.map.tileLayers.collision.layer;
         let gridData = getWalkableData(collisionLayer);

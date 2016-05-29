@@ -2,7 +2,7 @@ import {Phaser} from 'phaser';
 
 export default class Unit extends Phaser.Sprite {
     constructor(game, x = 0, y = 0, key) {
-        super(game, x, y, key);
+        super(game, x, y); // no key? or need a empty image...
 
         game.physics.arcade.enable(this);
 
@@ -12,6 +12,14 @@ export default class Unit extends Phaser.Sprite {
         this.body.immovable = false;
 
         this.forward = new Phaser.Point();
+
+        // selectron first, needs to be underneath the sprite
+        this.selectron = this.addChild(game.add.image(0, 0, 'selection'));
+        this.selectron.anchor.setTo(0.5);
+
+        // the actual animations are on top of the selectron
+        this.sprite = this.addChild(game.add.sprite(0, 0, key));
+        this.sprite.anchor.setTo(0.5);
 
         // stats
         this.maxHealth = 10;
@@ -29,15 +37,23 @@ export default class Unit extends Phaser.Sprite {
         // at the moment my sheet only has 1 frame for each...
 
         dirs.forEach((dir, i) => {
-            this.animations.add(`move_${dir}`, [i], 10, true);
+            this.sprite.animations.add(`move_${dir}`, [i], 10, true);
         });
+    }
+
+    get selected() {
+        return this.selectron.visible;
+    }
+
+    set selected(value) {
+        this.selectron.visible = value;
     }
 
     update() {
         this.followPath();
 
         if (this.body.velocity.isZero()) {
-            this.animations.stop();
+            this.sprite.animations.stop();
             return;
         }
 
@@ -78,7 +94,7 @@ export default class Unit extends Phaser.Sprite {
             anim = 'move_s'
         }
 
-        console.debug(facingAngle, anim);
+        //console.debug(facingAngle, anim);
 
         /*
                 if (v.x > -0.25 && v.x < 0.25 && v.y < 0) {
@@ -106,7 +122,7 @@ export default class Unit extends Phaser.Sprite {
                     anim = 'move_nw';
                 }
         */
-        this.animations.play(anim);
+        this.sprite.animations.play(anim);
     }
 
     moveToPath(path) {

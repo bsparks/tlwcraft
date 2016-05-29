@@ -13,6 +13,8 @@ export default class LoadState extends Phaser.State {
 
         this.game.load.spritesheet('peasant', 'assets/peasant.png', 32, 32);
 
+        this.game.load.image('town_center', 'assets/town_center.png');
+
         this.game.load.spritesheet('goldmine', 'assets/goldmine.png', 96, 96);
         this.game.load.image('glyph', 'assets/glyph.png');
         this.game.load.image('tree', 'assets/tree.png');
