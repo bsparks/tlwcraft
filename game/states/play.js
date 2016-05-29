@@ -20,9 +20,11 @@ export default class PlayState extends Phaser.State {
     create() {
         this.map = new Battlefield(this.game, 'map1');
 
-        this.player = new HumanPlayer(this, 'human', {}, this.map.humanUnits);
+        this.player = new HumanPlayer(this, 'humans');
+        this.opponent = new CpuPlayer(this, 'orcs');
 
-        this.opponent = new CpuPlayer(this, 'orc', {}, this.map.orcUnits);
+        // need to wait to spawn units until after we have map & players
+        this.map.spawnUnits();
 
         this.hud = this.game.add.group();
         this.hud.fixedToCamera = true;

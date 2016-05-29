@@ -2,8 +2,6 @@ import {Phaser} from 'phaser';
 import {Grid, AStarFinder} from 'pathfinding';
 import createUnit from 'game/units/unitFactory';
 
-import GoldMine from 'game/map/goldmine';
-
 function getWalkableData(layer) {
     let gridData = [];
     for (let y = 0; y < layer.height; y++) {
@@ -30,9 +28,23 @@ export default class Battlefield {
         this.mapName = mapName;
         this.game = game;
 
+        this.units = [];
+
+        this.onUnitAdd = new Phaser.Signal();
+        this.onUnitRemove = new Phaser.Signal();
+
+        this.onUnitAdd.add(function(unit, map) {
+            //console.debug('map unit add: ', arguments);
+            if (unit.faction === 'resources') {
+                map.resources.add(unit);
+            }
+        });
+
         this.initMap();
         this.buildPathGrid();
-        this.spawnResources();
+
+        // add this here so it's on top of the tilemap
+        this.resources = game.add.group();
     }
 
     initMap() {
@@ -53,14 +65,6 @@ export default class Battlefield {
         this.map.tileLayers.ground.resizeWorld();
     }
 
-    get humanUnits() {
-        return this.map.objects.humans;
-    }
-
-    get orcUnits() {
-        return this.map.objects.orcs;
-    }
-
     buildPathGrid() {
         let collisionLayer = this.map.tileLayers.collision.layer;
         let gridData = getWalkableData(collisionLayer);
@@ -69,21 +73,27 @@ export default class Battlefield {
         this.pathGrid = grid;
     }
 
-    spawnResources() {
-        this.resources = new Phaser.Group(this.game);
+    spawnUnits() {
+        let map = this,
+            objLayers = this.map.objects,
+            game = this.game,
+            layers = ['resources', 'humans', 'orcs', 'neutral'];
 
-        console.debug('map res: ', this.map.objects.resources);
-        this.map.objects.resources.forEach(res => {
-            // in Tiled objects pos is bottom left instead of top left
+        layers.forEach(function(layer) {
+            if (objLayers[layer]) {
+                objLayers[layer].forEach(function(obj) {
+                    try {
+                        let unit = createUnit(game, obj.type, obj);
+                        unit.faction = layer;
+                        // adjust for tiled
+                        unit.y -= unit.height;
 
-            if (res.type === 'mine') {
-                this.resources.add(new GoldMine(this.game, res.x, res.y));
-            }
-
-            if (res.type === 'wood') {
-                let tree = createUnit(this.game, 'tree', res);
-                tree.y -= tree.height;
-                this.resources.add(tree);
+                        map.units.push(unit);
+                        map.onUnitAdd.dispatch(unit, map);
+                    } catch (e) {
+                        console.warn('error in [layer] ' + layer + ' objs: ', e, obj);
+                    }
+                });
             }
         });
     }
@@ -111,7 +121,7 @@ export default class Battlefield {
             let x = tile.worldX + 16; // TODO: base on tile size
             let y = tile.worldY + 16;
 
-            return {x, y};
+            return { x, y };
         });
 
         return coordPath;

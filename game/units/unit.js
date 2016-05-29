@@ -22,6 +22,7 @@ export default class Unit extends Phaser.Sprite {
         this.sprite.anchor.setTo(0.5);
 
         // stats
+        this.faction = 'human';
         this.maxHealth = 10;
         this.health = 10;
         this.flying = false;

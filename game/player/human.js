@@ -1,8 +1,8 @@
 import Player from 'game/player/player';
 
 export default class HumanPlayer extends Player {
-    constructor(state, race, startingResources, startingUnits) {
-        super(state, race, startingResources, startingUnits);
+    constructor(state, faction, startingResources) {
+        super(state, faction, startingResources);
 
         this._cameraDragPos = null;
         this._cameraAccel = 1;
@@ -10,6 +10,19 @@ export default class HumanPlayer extends Player {
         this._cameraMaxSpeed = 10;
         this._cameraVelX = 0;
         this._cameraVelY = 0;
+
+        this.state.map.onUnitAdd.add(function(unit, map) {
+            let player = this;
+
+            unit.events.onInputDown.add(function(u, pointer) {
+                let queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
+                // only respond to left mouse
+                if (pointer.leftButton.isDown) {
+                    player.selectUnit(u, !queueModifier);
+                }
+            });
+
+        }, this);
     }
 
     update() {
@@ -21,8 +34,11 @@ export default class HumanPlayer extends Player {
             let {x, y} = game.input.activePointer;
 
             this.selectedUnits.forEach(unit => {
-                let target = map.getPathTarget(unit.x, unit.y, x, y);
-                unit.moveToPath(target);
+                // can only issue move orders to mobile units of same faction
+                if (unit.faction === this.faction && unit.moveToPath) {
+                    let target = map.getPathTarget(unit.x, unit.y, x, y);
+                    unit.moveToPath(target);
+                }
             });
         }
 
