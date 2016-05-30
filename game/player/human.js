@@ -25,6 +25,24 @@ export default class HumanPlayer extends Player {
                 map = player.state.map,
                 unitClicked = null;
 
+            if (player.buildUnit) {
+                if (pointer.leftButton.isDown) {
+                    // place the building
+                    map.units.push(player.buildUnit);
+                    player.addUnit(player.buildUnit);
+                    player.buildUnit.alpha = 1;
+                    player.buildUnit = null;
+                }
+
+                if (pointer.rightButton.isDown) {
+                    // cancel building
+                    player.buildUnit.destroy();
+                    player.buildUnit = null;
+                }
+
+                return;
+            }
+
             // TODO: quadtree?
             for(let unit of map.units) {
                 if (game.input.hitTest(unit, pointer, this._tempPoint)) {
@@ -68,6 +86,12 @@ export default class HumanPlayer extends Player {
                 this.restoreSelection(1);
             }
         });
+
+        let buildMenu = this.state.game.input.keyboard.addKey(Phaser.Keyboard.B);
+        buildMenu.onDown.add(key => {
+            // open build menu, for now build TC
+            this.enterBuildMode();
+        });
     }
 
     update() {
@@ -77,6 +101,10 @@ export default class HumanPlayer extends Player {
         if (this.dragging) {
             this.drag_camera(this.dragging);
             this.update_camera();
+        }
+
+        if (this.buildUnit) {
+            this.buildUnit.position.copyFrom(game.input.activePointer);
         }
     }
 

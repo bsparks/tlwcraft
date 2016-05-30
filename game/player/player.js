@@ -77,6 +77,13 @@ export default class Player {
         this.units.add(unit);
     }
 
+    enterBuildMode() {
+        this.buildUnit = createUnit(this.state.game, 'towncenter');
+        this.buildUnit.alpha = 0.5;
+        this.state.game.world.add(this.buildUnit);
+        console.debug('buildUnit: ', this.buildUnit);
+    }
+
     update() {
 
     }

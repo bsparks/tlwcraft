@@ -1,6 +1,7 @@
 import Peasant from 'game/units/peasant';
 import Tree from 'game/units/tree';
 import Goldmine from 'game/units/goldmine';
+import TownCenter from 'game/units/towncenter';
 
 export default function createUnit(game, unitType, {x = 0, y = 0} = {}) {
     if (unitType === 'peasant') {
@@ -13,6 +14,10 @@ export default function createUnit(game, unitType, {x = 0, y = 0} = {}) {
 
     if (unitType === 'mine') {
         return new Goldmine(game, x, y);
+    }
+
+    if (unitType === 'towncenter') {
+        return new TownCenter(game, x, y);
     }
 
     throw new Error('Unknown Unit Type: ', unitType);
