@@ -43,7 +43,7 @@ export default class HumanPlayer extends Player {
             }
 
             if (pointer.rightButton.isDown) {
-                let {x, y} = pointer;
+                let {worldX: x, worldY: y} = pointer;
 
                 this.selectedUnits.forEach(unit => {
                     // can only issue move orders to mobile units of same faction
