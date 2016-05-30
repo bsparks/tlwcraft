@@ -62,8 +62,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":353,
-                 "y":288
+                 "x":332,
+                 "y":280
                 }, 
                 {
                  "gid":443,
@@ -126,8 +126,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":356,
-                 "y":374
+                 "x":353,
+                 "y":383
                 }, 
                 {
                  "gid":443,
@@ -398,8 +398,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":516,
-                 "y":429
+                 "x":486,
+                 "y":477
                 }, 
                 {
                  "gid":443,
@@ -542,8 +542,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":541,
-                 "y":390
+                 "x":501,
+                 "y":428
                 }, 
                 {
                  "gid":443,
@@ -594,38 +594,6 @@
                  "y":457
                 }, 
                 {
-                 "gid":556,
-                 "height":64,
-                 "id":157,
-                 "name":"Start B",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":64,
-                 "x":65,
-                 "y":897
-                }, 
-                {
-                 "gid":556,
-                 "height":64,
-                 "id":158,
-                 "name":"Start A",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":64,
-                 "x":670,
-                 "y":320
-                }, 
-                {
                  "gid":443,
                  "height":32,
                  "id":159,
@@ -638,8 +606,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":253,
-                 "y":219
+                 "x":243,
+                 "y":210
                 }, 
                 {
                  "gid":443,
@@ -830,8 +798,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":299,
-                 "y":231
+                 "x":307,
+                 "y":247
                 }, 
                 {
                  "gid":443,
@@ -878,8 +846,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":324,
-                 "y":193
+                 "x":302,
+                 "y":210
                 }, 
                 {
                  "gid":443,
@@ -1518,8 +1486,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":517.5,
-                 "y":366.5
+                 "x":476.5,
+                 "y":357.5
                 }, 
                 {
                  "gid":443,
@@ -1630,8 +1598,8 @@
                  "type":"wood",
                  "visible":true,
                  "width":32,
-                 "x":499.5,
-                 "y":380.5
+                 "x":481.5,
+                 "y":400.5
                 }, 
                 {
                  "gid":443,

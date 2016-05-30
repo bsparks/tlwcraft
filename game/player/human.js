@@ -13,49 +13,30 @@ export default class HumanPlayer extends Player {
         this._cameraVelX = 0;
         this._cameraVelY = 0;
         this.dragging = null;
-        
+
+        // purpose of this is for hitTest not sure actually what for
         this._tempPoint = new Phaser.Point();
-
-        /*this.state.map.onUnitAdd.add(function(unit, map) {
-            let player = this;
-
-            unit.events.onInputDown.add(function(u, pointer) {
-                console.debug('unit click: ', pointer);
-                let queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
-                // only respond to left mouse
-                if (pointer.leftButton.isDown) {
-                    player.selectUnit(u, !queueModifier);
-                }
-
-                if (pointer.rightButton.isDown) {
-                    console.debug('right click: ', u, queueModifier);
-                }
-            });
-
-        }, this);*/
 
         this.state.game.input.onDown.add(function(pointer) {
             let queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
             //console.debug('click', pointer);
-            
+
             let player = this,
                 map = player.state.map,
                 unitClicked = null;
-                
+
             // TODO: quadtree?
             for(let unit of map.units) {
                 if (game.input.hitTest(unit, pointer, this._tempPoint)) {
                     unitClicked = unit;
                     break;
                 }
-            }            
-            
+            }
+
             if (pointer.leftButton.isDown) {
                 if (unitClicked) {
-                    console.debug('unit only clicked');
                     player.selectUnit(unitClicked, !queueModifier);
                 } else {
-                    console.debug('unit not clicked');
                     this.dragging = pointer;
                     player.clearSelection();
                 }
@@ -77,6 +58,16 @@ export default class HumanPlayer extends Player {
         this.state.game.input.onUp.add(function(pointer) {
             this.dragging = null;
         }, this);
+
+        // selection hotkeys
+        let selection1 = this.state.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
+        selection1.onDown.add(key => {
+            if (key.ctrlKey) {
+                this.saveSelection(1);
+            } else {
+                this.restoreSelection(1);
+            }
+        });
     }
 
     update() {

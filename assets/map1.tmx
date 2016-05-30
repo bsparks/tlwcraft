@@ -34,7 +34,7 @@
     <property name="gold" value="10000"/>
    </properties>
   </object>
-  <object id="57" type="wood" gid="443" x="353" y="288" width="32" height="32">
+  <object id="57" type="wood" gid="443" x="332" y="280" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -54,7 +54,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="126" type="wood" gid="443" x="356" y="374" width="32" height="32">
+  <object id="126" type="wood" gid="443" x="353" y="383" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -139,7 +139,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="143" type="wood" gid="443" x="516" y="429" width="32" height="32">
+  <object id="143" type="wood" gid="443" x="486" y="477" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -184,7 +184,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="152" type="wood" gid="443" x="541" y="390" width="32" height="32">
+  <object id="152" type="wood" gid="443" x="501" y="428" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -204,9 +204,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="157" name="Start B" type="spawnpoint" gid="556" x="65" y="897" width="64" height="64"/>
-  <object id="158" name="Start A" type="spawnpoint" gid="556" x="670" y="320" width="64" height="64"/>
-  <object id="159" type="wood" gid="443" x="253" y="219" width="32" height="32">
+  <object id="159" type="wood" gid="443" x="243" y="210" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -266,7 +264,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="171" type="wood" gid="443" x="299" y="231" width="32" height="32">
+  <object id="171" type="wood" gid="443" x="307" y="247" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -281,7 +279,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="174" type="wood" gid="443" x="324" y="193" width="32" height="32">
+  <object id="174" type="wood" gid="443" x="302" y="210" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -481,7 +479,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="214" type="wood" gid="443" x="517.5" y="366.5" width="32" height="32">
+  <object id="214" type="wood" gid="443" x="476.5" y="357.5" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>
@@ -516,7 +514,7 @@
     <property name="wood" value="10"/>
    </properties>
   </object>
-  <object id="221" type="wood" gid="443" x="499.5" y="380.5" width="32" height="32">
+  <object id="221" type="wood" gid="443" x="481.5" y="400.5" width="32" height="32">
    <properties>
     <property name="wood" value="10"/>
    </properties>

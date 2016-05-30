@@ -7,89 +7,39 @@ export default class MobileUnit extends Unit {
         this.moveSpeed = 50;
 
         // clockwise directions
-        let dirs = ['e', 'se', 's', 'sw', 'w', 'nw', 'n', 'ne'];
+        //let dirs = ['e', 'se', 's', 'sw', 'w', 'nw', 'n', 'ne'];
 
-        // at the moment my sheet only has 1 frame for each...
-
+        let dirs = ['s', 'w', 'e', 'n', 'sw', 'se', 'nw', 'ne'];
+        this.anims = {
+            idle: [],
+            walk: []
+        };
         dirs.forEach((dir, i) => {
-            this.sprite.animations.add(`move_${dir}`, [i], 10, true);
+            this.anims.idle[i] = this.sprite.animations.add(`idle_${dir}`, [i + (i * 31), i + 1 + (i * 31)], 2, true);
+            this.anims.walk[i] = this.sprite.animations.add(`walk_${dir}`, [i + 2 + (i * 31), i + 10 + (i * 31)], 5, true);
         });
+        //console.debug('anims: ', this.anims);
+        this.anims.idle[0].play();
     }
 
     update() {
         this.followPath();
 
-        if (this.body.velocity.isZero()) {
-            this.sprite.animations.stop();
-            return;
-        }
-
         Phaser.Point.interpolate(this.forward, this.body.velocity, this.moveSpeed, this.forward);
         this.forward.normalize();
 
-        //let facingAngle = this.position.angle(this.position.clone().add(this.forward.x, this.forward.y), true);
-        //facingAngle = Math.ceil(facingAngle);
-
-        let fwd = this.forward.clone();
-        fwd.setMagnitude(10);
-        let facingAngle = Math.atan2(fwd.y - this.y, fwd.x - this.x);
-        facingAngle = Math.ceil(facingAngle * (180 / Math.PI));
-        if (facingAngle < 0) {
-            facingAngle += 360;
+        let fAngle = this.position.angle(this.position.clone().add(this.forward.x, this.forward.y), false);
+        let anim = this.getSpriteDirection(fAngle);
+        //console.debug('foo', {fAngle, anim});
+        if (this.body.velocity.isZero()) {
+            if (!this.anims.idle[anim].isPlaying) {
+                this.anims.idle[anim].play();
+            }
+        } else {
+            if (!this.anims.walk[anim].isPlaying) {
+                this.anims.walk[anim].play();
+            }
         }
-
-        let v = this.body.velocity;
-        let anim = 'move_n';
-
-        if (facingAngle === 0 || (facingAngle < 45 && facingAngle > 0)) {
-            anim = 'move_e';
-        }
-
-        if (facingAngle < 0 && facingAngle >= -85) {
-            anim = 'move_ne';
-        }
-
-        if (facingAngle < -85 && facingAngle > -105) {
-            anim = 'move_n';
-        }
-
-        if (facingAngle === 180) {
-            anim = 'move_w';
-        }
-
-        if (facingAngle === 90) {
-            anim = 'move_s'
-        }
-
-        //console.debug(facingAngle, anim);
-
-        /*
-                if (v.x > -0.25 && v.x < 0.25 && v.y < 0) {
-                    anim = 'move_n';
-                }
-                if (v.x > -0.25 && v.x < 0.25 && v.y > 0) {
-                    anim = 'move_s';
-                }
-                if (v.x > 0 && v.y > -0.25 && v.y < 0.25) {
-                    anim = 'move_e';
-                }
-                if (v.x < 0 && v.y > -0.25 && v.y < 0.25) {
-                    anim = 'move_w';
-                }
-                if (v.x > 0 && v.y < 0) {
-                    anim = 'move_ne';
-                }
-                if (v.x > 0 && v.y > 0) {
-                    anim = 'move_se';
-                }
-                if (v.x < 0 && v.y > 0) {
-                    anim = 'move_sw';
-                }
-                if (v.x < 0 && v.y < 0) {
-                    anim = 'move_nw';
-                }
-        */
-        this.sprite.animations.play(anim);
     }
 
     moveToPath(path) {

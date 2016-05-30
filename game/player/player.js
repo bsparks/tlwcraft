@@ -10,6 +10,7 @@ export default class Player {
         this.units = new Phaser.Group(state.game);
 
         this.selectedUnits = [];
+        this.storedSelections = {};
 
         this.setResources(startingResources);
 
@@ -32,8 +33,18 @@ export default class Player {
             this.clearSelection();
         }
 
+        // if (unit.alive) {}
+
         unit.selected = true;
         this.selectedUnits.push(unit);
+    }
+
+    hasSelection() {
+        return this.selectedUnits.length > 0;
+    }
+
+    getSelection() {
+        return this.selectedUnits;
     }
 
     clearSelection() {
@@ -41,6 +52,25 @@ export default class Player {
             sUnit.selected = false;
         });
         this.selectedUnits = [];
+    }
+
+    applySelection(selection) {
+        selection.forEach(unit => {
+            this.selectUnit(unit);
+        });
+    }
+
+    saveSelection(slot) {
+        this.storedSelections[slot] = this.selectedUnits.slice(0);
+    }
+
+    restoreSelection(slot) {
+        let stored = this.storedSelections[slot];
+        if (Array.isArray(stored) && stored.length > 0) {
+            stored = stored.slice(0);
+            this.clearSelection();
+            this.applySelection(stored);
+        }
     }
 
     addUnit(unit) {

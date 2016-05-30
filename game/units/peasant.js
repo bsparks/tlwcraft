@@ -3,6 +3,8 @@ import MobileUnit from 'game/units/mobileUnit';
 
 export default class Peasant extends MobileUnit {
     constructor(game, x = 0, y = 0) {
-        super(game, x, y, 'peasant');
+        super(game, x, y, 'worker');
+
+        this.displayName = 'Peasant';
     }
 }

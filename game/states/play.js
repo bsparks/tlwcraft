@@ -8,7 +8,7 @@ import CpuPlayer from 'game/player/cpu';
 export default class PlayState extends Phaser.State {
     init() {
         this.game.input.mouse.capture = true;
-        this.game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
+        this.game.canvas.oncontextmenu = function(e) { e.preventDefault(); }
 
         this.game.debugMode = true;
     }
@@ -44,9 +44,15 @@ export default class PlayState extends Phaser.State {
     update() {
         this.player.update();
         this.opponent.update();
+
+        this.game.physics.arcade.collide(this.map.units, this.map.units);
     }
 
     render() {
+        if (this.player.hasSelection()) {
+            let selection = this.player.getSelection();
+            this.game.debug.text(`selected: ${selection.map(s => s.displayName).join(', ')}`, 32, 100, 'aqua');
+        }
         // TODO: move to debug units
         /*
         let fwd = this.peasant.forward.clone(),

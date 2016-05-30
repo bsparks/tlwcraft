@@ -60,6 +60,7 @@ export default class Battlefield {
         this.map.tileLayers.ground = this.map.createLayer('ground');
         this.map.tileLayers.collision = this.map.createLayer('collision');
         this.map.tileLayers.collision.renderable = false;
+        this.map.setCollisionBetween(1, 1000, true, 'collision');
 
         //resizes the game world to match the layer dimensions
         this.map.tileLayers.ground.resizeWorld();
@@ -86,7 +87,8 @@ export default class Battlefield {
                         let unit = createUnit(game, obj.type, obj);
                         unit.faction = layer;
                         // adjust for tiled
-                        unit.y -= unit.height;
+                        unit.y -= unit.height * unit.anchor.y;
+                        unit.x += unit.width * unit.anchor.x;
 
                         map.units.push(unit);
                         map.onUnitAdd.dispatch(unit, map);
