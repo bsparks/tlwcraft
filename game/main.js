@@ -6,7 +6,7 @@ import PlayState from 'game/states/play';
 
 class JamGame extends Phaser.Game {
     constructor(el = 'content', {width = 800, height = 600} = {}) {
-        super(width, height, Phaser.CANVAS, el, null);
+        super(width, height, Phaser.AUTO, el, null);
 
         this.state.add('boot', BootState);
         this.state.add('load', LoadState);
