@@ -10,6 +10,7 @@ export default class HumanPlayer extends Player {
         this._cameraMaxSpeed = 10;
         this._cameraVelX = 0;
         this._cameraVelY = 0;
+        this.dragging = null;
 
         this.state.map.onUnitAdd.add(function(unit, map) {
             let player = this;
@@ -20,8 +21,20 @@ export default class HumanPlayer extends Player {
                 if (pointer.leftButton.isDown) {
                     player.selectUnit(u, !queueModifier);
                 }
+                
+                if (pointer.rightButton.isDown) {
+                    console.debug('right click: ', u, queueModifier);
+                }
             });
 
+        }, this);
+        
+        this.state.game.input.onDown.add(function(pointer) {
+            console.debug('click', pointer);
+            if (pointer.leftButton.isDown) {
+                this.dragging = pointer;
+            }
+            this.drag_camera(pointer);
         }, this);
     }
 
@@ -41,9 +54,9 @@ export default class HumanPlayer extends Player {
                 }
             });
         }
-
-        if (game.input.activePointer.leftButton.isDown) {
-            this.drag_camera(game.input.activePointer);
+        
+        if (this.dragging) {
+            this.drag_camera(this.dragging);
             this.update_camera();
         }
     }
