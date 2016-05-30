@@ -29,16 +29,18 @@ export default class Player {
 
     selectUnit(unit, replaceSelection) {
         if (replaceSelection) {
-            this.selectedUnits.forEach(sUnit => {
-                if (sUnit !== unit) {
-                    sUnit.selected = false;
-                }
-            });
-            this.selectedUnits = [];
+            this.clearSelection();
         }
 
         unit.selected = true;
         this.selectedUnits.push(unit);
+    }
+
+    clearSelection() {
+        this.selectedUnits.forEach(sUnit => {
+            sUnit.selected = false;
+        });
+        this.selectedUnits = [];
     }
 
     addUnit(unit) {

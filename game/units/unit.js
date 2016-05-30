@@ -28,13 +28,11 @@ export default class Unit extends Phaser.Sprite {
         this.flying = false;
         this.invulnerable = false;
 
-        this.moveSpeed = 50;
-
         this.events.onKilled.add(this.onDeath, this);
 
         this.selected = false;
 
-        this.inputEnabled = true;
+        this.inputEnabled = false;
     }
 
     get selected() {

@@ -1,3 +1,5 @@
+import {Phaser} from 'phaser';
+
 import Player from 'game/player/player';
 
 export default class HumanPlayer extends Player {
@@ -11,30 +13,69 @@ export default class HumanPlayer extends Player {
         this._cameraVelX = 0;
         this._cameraVelY = 0;
         this.dragging = null;
+        
+        this._tempPoint = new Phaser.Point();
 
-        this.state.map.onUnitAdd.add(function(unit, map) {
+        /*this.state.map.onUnitAdd.add(function(unit, map) {
             let player = this;
 
             unit.events.onInputDown.add(function(u, pointer) {
+                console.debug('unit click: ', pointer);
                 let queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
                 // only respond to left mouse
                 if (pointer.leftButton.isDown) {
                     player.selectUnit(u, !queueModifier);
                 }
-                
+
                 if (pointer.rightButton.isDown) {
                     console.debug('right click: ', u, queueModifier);
                 }
             });
 
-        }, this);
-        
+        }, this);*/
+
         this.state.game.input.onDown.add(function(pointer) {
-            console.debug('click', pointer);
+            let queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
+            //console.debug('click', pointer);
+            
+            let player = this,
+                map = player.state.map,
+                unitClicked = null;
+                
+            // TODO: quadtree?
+            for(let unit of map.units) {
+                if (game.input.hitTest(unit, pointer, this._tempPoint)) {
+                    unitClicked = unit;
+                    break;
+                }
+            }            
+            
             if (pointer.leftButton.isDown) {
-                this.dragging = pointer;
+                if (unitClicked) {
+                    console.debug('unit only clicked');
+                    player.selectUnit(unitClicked, !queueModifier);
+                } else {
+                    console.debug('unit not clicked');
+                    this.dragging = pointer;
+                    player.clearSelection();
+                }
             }
-            this.drag_camera(pointer);
+
+            if (pointer.rightButton.isDown) {
+                let {x, y} = pointer;
+
+                this.selectedUnits.forEach(unit => {
+                    // can only issue move orders to mobile units of same faction
+                    if (unit.faction === player.faction && unit.moveToPath) {
+                        let target = player.state.map.getPathTarget(unit.x, unit.y, x, y);
+                        unit.moveToPath(target);
+                    }
+                });
+            }
+        }, this);
+
+        this.state.game.input.onUp.add(function(pointer) {
+            this.dragging = null;
         }, this);
     }
 
@@ -42,19 +83,6 @@ export default class HumanPlayer extends Player {
         let game = this.state.game,
             map = this.state.map;
 
-        if (game.input.activePointer.rightButton.isDown) {
-            //console.debug('mouse', game.input.activePointer);
-            let {x, y} = game.input.activePointer;
-
-            this.selectedUnits.forEach(unit => {
-                // can only issue move orders to mobile units of same faction
-                if (unit.faction === this.faction && unit.moveToPath) {
-                    let target = map.getPathTarget(unit.x, unit.y, x, y);
-                    unit.moveToPath(target);
-                }
-            });
-        }
-        
         if (this.dragging) {
             this.drag_camera(this.dragging);
             this.update_camera();
