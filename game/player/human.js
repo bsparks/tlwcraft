@@ -14,6 +14,9 @@ export default class HumanPlayer extends Player {
         this._cameraVelY = 0;
         this.dragging = null;
 
+        this.graphics = this.state.game.add.graphics();
+        this.selectionRect = new Phaser.Rectangle();
+
         // purpose of this is for hitTest not sure actually what for
         this._tempPoint = new Phaser.Point();
 
@@ -43,21 +46,8 @@ export default class HumanPlayer extends Player {
                 return;
             }
 
-            // TODO: quadtree?
-            for(let unit of map.units) {
-                if (game.input.hitTest(unit, pointer, this._tempPoint)) {
-                    unitClicked = unit;
-                    break;
-                }
-            }
-
-            if (pointer.leftButton.isDown) {
-                if (unitClicked) {
-                    player.selectUnit(unitClicked, !queueModifier);
-                } else {
-                    this.dragging = pointer;
-                    player.clearSelection();
-                }
+            if (pointer.middleButton.isDown) {
+                this.dragging = pointer;
             }
 
             if (pointer.rightButton.isDown) {
@@ -96,7 +86,33 @@ export default class HumanPlayer extends Player {
 
     update() {
         let game = this.state.game,
-            map = this.state.map;
+            map = this.state.map,
+            pointer = this.state.game.input.activePointer,
+            queueModifier = this.state.game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
+
+        this.graphics.clear();
+        if (pointer.leftButton.isDown) {
+            let start = pointer.positionDown,
+                size = {
+                    x: pointer.position.x - start.x,
+                    y: pointer.position.y - start.y
+                };
+
+            this.selectionRect.setTo(start.x, start.y, size.x || 1, size.y || 1);
+
+            this.graphics.lineStyle(1, 0x00ff00);
+            this.graphics.drawShape(this.selectionRect);
+
+            // TODO: quadtree?
+            if (!queueModifier) {
+                this.clearSelection();
+            }
+            for(let unit of map.units) {
+                if (this.selectionRect.intersects(unit.getBounds())) {
+                    this.selectUnit(unit, false);
+                }
+            }
+        }
 
         if (this.dragging) {
             this.drag_camera(this.dragging);
