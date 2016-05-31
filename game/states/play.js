@@ -45,7 +45,7 @@ export default class PlayState extends Phaser.State {
         this.player.update();
         this.opponent.update();
 
-        this.game.physics.arcade.collide(this.map.units, this.map.units);
+        //this.game.physics.arcade.collide(this.map.units, this.map.units);
     }
 
     render() {

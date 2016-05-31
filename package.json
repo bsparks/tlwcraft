@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "npm install",
+    "postinstall": "jspm install",
+    "start": "live-server"
   },
   "keywords": [],
   "author": "Ben Sparks <bsparks42@gmail.com> (https://github.com/bsparks)",
@@ -21,6 +23,7 @@
     }
   },
   "devDependencies": {
-    "jspm": "^0.16.35"
+    "jspm": "^0.16.35",
+    "live-server": "^1.0.0"
   }
 }

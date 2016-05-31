@@ -21,7 +21,9 @@ function getWalkableData(layer) {
     return gridData;
 }
 
-var finder = new AStarFinder();
+var finder = new AStarFinder({
+    allowDiagonal: true
+});
 
 export default class Battlefield {
     constructor(game, mapName) {
