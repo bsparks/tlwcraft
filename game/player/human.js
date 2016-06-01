@@ -82,6 +82,12 @@ export default class HumanPlayer extends Player {
             queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
 
         this.graphics.clear();
+
+        if (pointer.rightButton.isDown && (pointer.rightButton.duration > 0 && pointer.rightButton.duration < 100)) {
+            this.graphics.lineStyle(1, 0xffffff);
+            this.graphics.drawCircle(pointer.x, pointer.y, 32);
+        }
+
         if (pointer.leftButton.isDown) {
             let start = pointer.positionDown.clone(),
                 size = {
