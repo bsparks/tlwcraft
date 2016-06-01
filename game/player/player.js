@@ -51,7 +51,7 @@ export default class Player {
         this.selectedUnits.forEach(sUnit => {
             sUnit.selected = false;
         });
-        this.selectedUnits = [];
+        this.selectedUnits.length = 0;
     }
 
     applySelection(selection) {

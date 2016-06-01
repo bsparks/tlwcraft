@@ -12,9 +12,9 @@ export default class HumanPlayer extends Player {
         this._cameraMaxSpeed = 10;
         this._cameraVelX = 0;
         this._cameraVelY = 0;
-        this.dragging = null;
 
         this.graphics = this.state.game.add.graphics();
+        this.graphics.fixedToCamera = true;
         this.selectionRect = new Phaser.Rectangle();
 
         // purpose of this is for hitTest not sure actually what for
@@ -25,8 +25,7 @@ export default class HumanPlayer extends Player {
             //console.debug('click', pointer);
 
             let player = this,
-                map = player.state.map,
-                unitClicked = null;
+                map = player.state.map;
 
             if (player.buildUnit) {
                 if (pointer.leftButton.isDown) {
@@ -46,10 +45,6 @@ export default class HumanPlayer extends Player {
                 return;
             }
 
-            if (pointer.middleButton.isDown) {
-                this.dragging = pointer;
-            }
-
             if (pointer.rightButton.isDown) {
                 let {worldX: x, worldY: y} = pointer;
 
@@ -61,10 +56,6 @@ export default class HumanPlayer extends Player {
                     }
                 });
             }
-        }, this);
-
-        this.state.game.input.onUp.add(function(pointer) {
-            this.dragging = null;
         }, this);
 
         // selection hotkeys
@@ -87,24 +78,33 @@ export default class HumanPlayer extends Player {
     update() {
         let game = this.state.game,
             map = this.state.map,
-            pointer = this.state.game.input.activePointer,
-            queueModifier = this.state.game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
+            pointer = game.input.activePointer,
+            queueModifier = game.input.keyboard.isDown(Phaser.KeyCode.SHIFT);
 
         this.graphics.clear();
         if (pointer.leftButton.isDown) {
-            let start = pointer.positionDown,
+            let start = pointer.positionDown.clone(),
                 size = {
-                    x: pointer.position.x - start.x,
-                    y: pointer.position.y - start.y
+                    x: pointer.x - start.x,
+                    y: pointer.y - start.y
                 };
 
-            this.selectionRect.setTo(start.x, start.y, size.x || 1, size.y || 1);
+            // if you select "backwards" the rect bounds doesn't work
+            if (size.y < 0) {
+                start.y -= Math.abs(size.y);
+            }
+            if (size.x < 0) {
+                start.x -= Math.abs(size.x);
+            }
+
+            this.selectionRect.setTo(start.x, start.y, Math.abs(size.x), Math.abs(size.y));
 
             this.graphics.lineStyle(1, 0x00ff00);
             this.graphics.drawShape(this.selectionRect);
 
             // TODO: quadtree?
             if (!queueModifier) {
+                //console.debug('clear');
                 this.clearSelection();
             }
             for(let unit of map.units) {
@@ -114,8 +114,8 @@ export default class HumanPlayer extends Player {
             }
         }
 
-        if (this.dragging) {
-            this.drag_camera(this.dragging);
+        if (pointer.middleButton.isDown) {
+            this.drag_camera(pointer);
             this.update_camera();
         }
 

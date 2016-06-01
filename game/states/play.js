@@ -49,10 +49,15 @@ export default class PlayState extends Phaser.State {
     }
 
     render() {
-        if (this.player.hasSelection()) {
+        //if (this.player.hasSelection()) {
             let selection = this.player.getSelection();
+
             this.game.debug.text(`selected: ${selection.map(s => s.displayName).join(', ')}`, 32, 100, 'aqua');
-        }
+            this.game.debug.text(`selectionRect: ${this.player.selectionRect.toString()}`, 32, 120, 'aqua');
+            if(selection[0]) {
+                this.game.debug.text(`first: ${selection[0].displayName}: ${selection[0].position.toString()}`, 32, 140, 'aqua');
+            }
+        //}
         // TODO: move to debug units
         /*
         let fwd = this.peasant.forward.clone(),
