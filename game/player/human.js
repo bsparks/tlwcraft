@@ -58,14 +58,17 @@ export default class HumanPlayer extends Player {
             }
         }, this);
 
-        // selection hotkeys
-        let selection1 = this.state.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
-        selection1.onDown.add(key => {
-            if (key.ctrlKey) {
-                this.saveSelection(1);
-            } else {
-                this.restoreSelection(1);
-            }
+        // group selection hotkeys
+        let groupKeys = Phaser.ArrayUtils.numberArray(Phaser.Keyboard.ZERO, Phaser.Keyboard.NINE);
+        groupKeys.forEach(key => {
+            let handler = this.state.game.input.keyboard.addKey(key);
+            handler.onDown.add(input => {
+                if (input.ctrlKey) {
+                    this.saveSelection(key);
+                } else {
+                    this.restoreSelection(key);
+                }
+            });
         });
 
         let buildMenu = this.state.game.input.keyboard.addKey(Phaser.Keyboard.B);
@@ -113,7 +116,7 @@ export default class HumanPlayer extends Player {
                 //console.debug('clear');
                 this.clearSelection();
             }
-            for(let unit of map.units) {
+            for (let unit of map.units) {
                 if (this.selectionRect.intersects(unit.getBounds())) {
                     this.selectUnit(unit, false);
                 }
