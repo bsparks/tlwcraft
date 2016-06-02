@@ -106,7 +106,7 @@ export default class HumanPlayer extends Player {
                 start.x -= Math.abs(size.x);
             }
 
-            this.selectionRect.setTo(start.x, start.y, Math.abs(size.x), Math.abs(size.y));
+            this.selectionRect.setTo(start.x, start.y, Math.abs(size.x) || 1, Math.abs(size.y) || 1);
 
             this.graphics.lineStyle(1, 0x00ff00);
             this.graphics.drawShape(this.selectionRect);
